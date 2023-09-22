@@ -1,0 +1,32 @@
+// 1.Overloading + as a special method to ad two objects
+// 2.Overloading * as a global function to calculate the product of two objects elements 
+#include <iostream>
+using namespace std;
+
+class V{
+	public:
+	float x[2];
+	V (float a, float b){x[0]=a; x[1]=b;}	//constructor
+	V operator + (V &obj){	//overloading + operator
+		V res(0.0f, 0.0f);
+		for(int i=0; i<2; i++)
+			res.x[i] += obj.x[i]; 
+		return res;
+	}
+};
+float operator * (V &left, V &right){	//overloading * operator
+	float res=0.0;
+	for(int i=0; i<2; i++)
+		res +=left.x[i]*right.x[i];
+	return res;
+}
+
+int main() {
+	V v1(0.0f,1.0f), v2(1.0f,0.0f), v3(0.0f,0.0f);
+	float f;
+	v3 = v1+v2;
+	f = v1 * v2;
+	cout<<"("<<v3.x[0]<<","<<v3.x[1]<<")"<<endl;
+	cout<<f<<endl;
+	return 0;
+}
